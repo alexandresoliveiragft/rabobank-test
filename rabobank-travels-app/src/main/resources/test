@@ -1,0 +1,101 @@
+{
+	"id": "812ed4b8-e6c1-4215-80ec-55b073cf1f4f",
+	"name": "Alexandre Salvador de Oliveira",
+	"email": "alexandre@email.com"
+}
+
+{
+	"transfers": [
+		{
+			"id": "47852a9b-adf3-416d-a850-0942036e0092",
+			"carInfo": "Cobalt LTZ 4 portas manual",
+			"price": 89.54
+		},
+		{
+			"id": "d1c53374-5401-4df2-8ac2-11fd7b7e8a3d",
+			"carInfo": "Celta LTZ 4 portas manual",
+			"price": 89.54
+		}
+	]
+}
+
+{
+	"hotels": [
+		{
+			"id": "6de7bc00-13d3-4ff2-bec5-0d6dc83d1980",
+			"name": "Hotel Top - São Paulo",
+			"city": "São Paulo",
+			"country": "São Paulo",
+			"rooms": [
+				{
+					"id": "4cd958ba-2a49-4173-8878-f9daefa370ef",
+					"type": "Comum",
+					"beds": "1 cama casal e 1 de solteiro",
+					"price": 300.00
+				}
+			]
+		}
+	]
+}
+
+{
+	"flights": [
+		{
+			"id": "fc5bf0dc-8d8c-4a73-9e52-dda71839a6a6",
+			"company": "Azul",
+			"origin": "(CFN) Belo Horizonte, Minas Gerais",
+			"destiny": "(REC) Recife, Pernanbuco",
+			"availableSeats": [
+				{
+					"id": "244dafb5-4e2b-4888-bcae-bed35da368cb",
+					"seatNumber": "01A"
+				},
+				{
+					"id": "3890d902-0835-4272-899d-3ce163e80451",
+					"seatNumber": "01B"
+				},
+				{
+					"id": "200c7a45-c232-4162-b888-50788d717b6f",
+					"seatNumber": "07E"
+				},
+				{
+					"id": "f39d1260-b757-41da-a89f-d6de8315f4a4",
+					"seatNumber": "07F"
+				}
+			],
+			"checkIn": "2024-07-15T10:25:43",
+			"checkOut": "2014-07-15T16:25:43"
+		}
+	]
+}
+
+{
+	"flights": [
+		{
+			"id": "d74509e5-a2c3-414b-98df-aa2b05657e4c",
+			"company": "Azul",
+			"origin": "(REC) Recife, Pernanbuco",
+			"destiny": "(CFN) Belo Horizonte, Minas Gerais",
+			"availableSeats": [
+				{
+					"id": "5ae478fd-a79d-4c3e-8461-d3c4bed47630",
+					"seatNumber": "01A"
+				},
+				{
+					"id": "d842c21c-2785-480e-9d43-5f1fb501908d",
+					"seatNumber": "01B"
+				},
+				{
+					"id": "d1411863-a5e2-4937-a623-2ee67ca4a4cf",
+					"seatNumber": "07E"
+				},
+				{
+					"id": "12e00208-fd8e-44f3-b056-3376262a8c93",
+					"seatNumber": "07F"
+				}
+			],
+			"checkIn": "2024-07-22T10:25:43",
+			"checkOut": "2014-07-22T16:25:43"
+		}
+	]
+}

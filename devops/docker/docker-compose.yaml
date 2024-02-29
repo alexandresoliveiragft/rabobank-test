@@ -1,0 +1,136 @@
+version: "3.8"
+
+x-rabobank-travels-common:
+  &rabobank-travels-common
+  deploy:
+    resources:
+      limits:
+        memory: 256M
+
+services:
+  rabobank-travels-primary-db:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/postgresql:16
+    container_name: rabobank-travels-primary-db
+    environment:
+#      - POSTGRESQL_REPLICATION_MODE=master
+#      - POSTGRESQL_REPLICATION_USER=dev_replica
+#      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_USERNAME=dev
+      - POSTGRESQL_PASSWORD=dev
+      - POSTGRESQL_DATABASE=rabobank-travels-db
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 5432:5432
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-primary-db:/bitnami/postgresql"
+#  rabobank-travels-replica-db:
+#    <<: *rabobank-travels-common
+#    image: docker.io/bitnami/postgresql:16
+#    container_name: rabobank-travels-replica-db
+#    environment:
+#      - POSTGRESQL_REPLICATION_MODE=slave
+#      - POSTGRESQL_REPLICATION_USER=dev_replica
+#      - POSTGRESQL_REPLICATION_PASSWORD=dev
+#      - POSTGRESQL_MASTER_HOST=rabobank-travels-primary-db
+#      - POSTGRESQL_PASSWORD=dev
+#      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+#      - ALLOW_EMPTY_PASSWORD=yes
+#    ports:
+#      - 5433:5432
+#    networks:
+#      - rabobank-travels-network
+#    volumes:
+#      - "./volumes/rabobank-travels-replica-db:/bitnami/postgresql"
+#    depends_on:
+#      - rabobank-travels-primary-db
+  rabobank-travels-flights-primary-db:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/postgresql:16
+    container_name: rabobank-travels-flights-primary-db
+    environment:
+#      - POSTGRESQL_REPLICATION_MODE=master
+#      - POSTGRESQL_REPLICATION_USER=dev_replica
+#      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_USERNAME=dev
+      - POSTGRESQL_PASSWORD=dev
+      - POSTGRESQL_DATABASE=rabobank-travels-flights-db
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 5433:5432
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-flights-primary-db:/bitnami/postgresql"
+  rabobank-travels-hotels-primary-db:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/postgresql:16
+    container_name: rabobank-travels-hotels-primary-db
+    environment:
+      #      - POSTGRESQL_REPLICATION_MODE=master
+      #      - POSTGRESQL_REPLICATION_USER=dev_replica
+      #      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_USERNAME=dev
+      - POSTGRESQL_PASSWORD=dev
+      - POSTGRESQL_DATABASE=rabobank-travels-hotels-db
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 5434:5432
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-hotels-primary-db:/bitnami/postgresql"
+  rabobank-travels-rent-car-primary-db:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/postgresql:16
+    container_name: rabobank-travels-rent-car-primary-db
+    environment:
+      #      - POSTGRESQL_REPLICATION_MODE=master
+      #      - POSTGRESQL_REPLICATION_USER=dev_replica
+      #      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_USERNAME=dev
+      - POSTGRESQL_PASSWORD=dev
+      - POSTGRESQL_DATABASE=rabobank-travels-rent-car-db
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 5435:5432
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-rent-car-primary-db:/bitnami/postgresql"
+  kafka:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/kafka:3.6
+    container_name: rabobank-travels-kafka
+    ports:
+      - "9092:9092"
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-kafka:/bitnami"
+    environment:
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+  kafdrop:
+    <<: *rabobank-travels-common
+    image: obsidiandynamics/kafdrop:4.0.1
+    ports:
+      - 19000:9000
+    networks:
+      - rabobank-travels-network
+    environment:
+      - KAFKA_BROKERCONNECT=kafka:9092
+    depends_on:
+      - kafka
+
+networks:
+  rabobank-travels-network:
+    driver: bridge

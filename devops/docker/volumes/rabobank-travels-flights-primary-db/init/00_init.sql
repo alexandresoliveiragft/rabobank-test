@@ -1,0 +1,2 @@
+--create user dev_replica with replication encrypted password 'dev';
+--select pg_create_physical_replication_slot('rabobank_travels_replication_slot');
