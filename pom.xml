@@ -29,7 +29,7 @@
     <module>rabobank-travels-flights-app</module>
     <module>rabobank-travels-hotels-app</module>
     <module>rabobank-travels-rent-car-app</module>
-      <module>rabobank-travels-config-app</module>
+    <module>rabobank-travels-config-app</module>
   </modules>
 
   <properties>
