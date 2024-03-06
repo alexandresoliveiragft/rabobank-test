@@ -7,7 +7,7 @@ spring:
       server:
         git:
           default-label: feature/F0001_add_config_server
-          uri: https://github.com/alexandresoliveiragft/rabobank-test
+          uri: https://github.com/alexandresoliveiragft/rabobank-test/rabobank-travels-config-app-files
           search-paths: '{application}/{profile}'
   security:
     user:
