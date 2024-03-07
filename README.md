@@ -5,6 +5,8 @@ This is a project for a test.
 This project is about a travel agency and coverage this technologies:
 
 - Pub/Sub pattern
+- Centralized Configuration
+- 
 
 ## Desing
 
@@ -42,7 +44,6 @@ $ docker-compose up -d
 - CQRS
 - Circuit Breaker
 - API Proxy
-- Cloud Config
 
 ### Docs
 - https://www.baeldung.com/spring-kafka
