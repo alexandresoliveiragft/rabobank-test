@@ -2,13 +2,19 @@ server:
   port: 8080
 
 spring:
+  profiles:
+    active: git
   cloud:
     config:
       server:
         git:
-          default-label: develop
-          uri: https://github.com/alexandresoliveiragft/rabobank-test/rabobank-travels-config-app-files
-#          search-paths: '{application}/{profile}/{label}'
+          defaultLabel: main
+          tryMasterBranch: false
+          timeout: 3
+          uri: https://github.com/alexandresoliveiragft/rabobank-test
+          deleteUntrackedBranches: true
+          searchPaths:
+            - 'rabobank-travels-config-app-files/\{application}/\{profile}/*'
   security:
     user:
       name: dev
