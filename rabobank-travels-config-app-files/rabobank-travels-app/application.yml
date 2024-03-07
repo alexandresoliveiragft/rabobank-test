@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: development
+    active: dev
   main:
     allow-bean-definition-overriding: true
     allow-circular-references: true
