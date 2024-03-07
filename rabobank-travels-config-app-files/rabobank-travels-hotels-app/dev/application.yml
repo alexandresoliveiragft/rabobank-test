@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   profiles:
-    active: dev
+    active: develop
   main:
     allow-bean-definition-overriding: true
     allow-circular-references: true
@@ -12,7 +12,7 @@ spring:
       ddl-auto: validate
     show-sql: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/rabobank-travels-db
+    url: jdbc:postgresql://localhost:5434/rabobank-travels-hotels-db
     username: dev
     password: dev
     hikari:
@@ -21,9 +21,9 @@ spring:
       idle-timeout: 10000
       max-lifetime: 60000
       connection-timeout: 5000
-      pool-name: RabobankTravelsHikariPool
+      pool-name: RabobankTravelsHotelsHikariPool
   flyway:
-    url: jdbc:postgresql://localhost:5432/rabobank-travels-db
+    url: jdbc:postgresql://localhost:5434/rabobank-travels-hotels-db
     user: dev
     password: dev
     encoding: UTF-8
