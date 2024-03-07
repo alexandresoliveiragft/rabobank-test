@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: hml
+    active: develop
   main:
     allow-bean-definition-overriding: true
     allow-circular-references: true
@@ -12,7 +12,7 @@ spring:
       ddl-auto: validate
     show-sql: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/rabobank-travels-db
+    url: jdbc:postgresql://localhost:5433/rabobank-travels-flights-db
     username: dev
     password: dev
     hikari:
@@ -21,9 +21,9 @@ spring:
       idle-timeout: 10000
       max-lifetime: 60000
       connection-timeout: 5000
-      pool-name: RabobankTravelsHikariPool
+      pool-name: RabobankTravelsFlightsHikariPool
   flyway:
-    url: jdbc:postgresql://localhost:5432/rabobank-travels-db
+    url: jdbc:postgresql://localhost:5433/rabobank-travels-flights-db
     user: dev
     password: dev
     encoding: UTF-8

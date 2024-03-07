@@ -14,7 +14,7 @@ spring:
           uri: https://github.com/alexandresoliveiragft/rabobank-test
           deleteUntrackedBranches: true
           searchPaths:
-            - 'rabobank-travels-config-app-files/\{application}/\{profile}/*'
+            - 'rabobank-travels-config-app-files/{application}/{profile}'
   security:
     user:
       name: dev
