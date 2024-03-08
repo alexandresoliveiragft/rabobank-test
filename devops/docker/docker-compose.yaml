@@ -13,9 +13,9 @@ services:
     image: docker.io/bitnami/postgresql:16
     container_name: rabobank-travels-primary-db
     environment:
-#      - POSTGRESQL_REPLICATION_MODE=master
-#      - POSTGRESQL_REPLICATION_USER=dev_replica
-#      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=dev_replica
+      - POSTGRESQL_REPLICATION_PASSWORD=dev
       - POSTGRESQL_USERNAME=dev
       - POSTGRESQL_PASSWORD=dev
       - POSTGRESQL_DATABASE=rabobank-travels-db
@@ -25,35 +25,35 @@ services:
     networks:
       - rabobank-travels-network
     volumes:
-      - "./volumes/rabobank-travels-primary-db:/bitnami/postgresql"
-#  rabobank-travels-replica-db:
-#    <<: *rabobank-travels-common
-#    image: docker.io/bitnami/postgresql:16
-#    container_name: rabobank-travels-replica-db
-#    environment:
-#      - POSTGRESQL_REPLICATION_MODE=slave
-#      - POSTGRESQL_REPLICATION_USER=dev_replica
-#      - POSTGRESQL_REPLICATION_PASSWORD=dev
-#      - POSTGRESQL_MASTER_HOST=rabobank-travels-primary-db
-#      - POSTGRESQL_PASSWORD=dev
-#      - POSTGRESQL_MASTER_PORT_NUMBER=5432
-#      - ALLOW_EMPTY_PASSWORD=yes
-#    ports:
-#      - 5433:5432
-#    networks:
-#      - rabobank-travels-network
-#    volumes:
-#      - "./volumes/rabobank-travels-replica-db:/bitnami/postgresql"
-#    depends_on:
-#      - rabobank-travels-primary-db
+      - "./volumes/rabobank-travels-db/primary:/bitnami/postgresql"
+  rabobank-travels-replica-db:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/postgresql:16
+    container_name: rabobank-travels-replica-db
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=dev_replica
+      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_MASTER_HOST=rabobank-travels-primary-db
+      - POSTGRESQL_PASSWORD=dev
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 5436:5432
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-db/replica:/bitnami/postgresql"
+    depends_on:
+      - rabobank-travels-primary-db
   rabobank-travels-flights-primary-db:
     <<: *rabobank-travels-common
     image: docker.io/bitnami/postgresql:16
     container_name: rabobank-travels-flights-primary-db
     environment:
-#      - POSTGRESQL_REPLICATION_MODE=master
-#      - POSTGRESQL_REPLICATION_USER=dev_replica
-#      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=dev_replica
+      - POSTGRESQL_REPLICATION_PASSWORD=dev
       - POSTGRESQL_USERNAME=dev
       - POSTGRESQL_PASSWORD=dev
       - POSTGRESQL_DATABASE=rabobank-travels-flights-db
@@ -63,15 +63,35 @@ services:
     networks:
       - rabobank-travels-network
     volumes:
-      - "./volumes/rabobank-travels-flights-primary-db:/bitnami/postgresql"
+      - "./volumes/rabobank-travels-flights-db/primary:/bitnami/postgresql"
+  rabobank-travels-flights-replica-db:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/postgresql:16
+    container_name: rabobank-travels-flights-replica-db
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=dev_replica
+      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_MASTER_HOST=rabobank-travels-flights-primary-db
+      - POSTGRESQL_PASSWORD=dev
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 5437:5432
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-flights-db/replica:/bitnami/postgresql"
+    depends_on:
+      - rabobank-travels-flights-primary-db
   rabobank-travels-hotels-primary-db:
     <<: *rabobank-travels-common
     image: docker.io/bitnami/postgresql:16
     container_name: rabobank-travels-hotels-primary-db
     environment:
-      #      - POSTGRESQL_REPLICATION_MODE=master
-      #      - POSTGRESQL_REPLICATION_USER=dev_replica
-      #      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=dev_replica
+      - POSTGRESQL_REPLICATION_PASSWORD=dev
       - POSTGRESQL_USERNAME=dev
       - POSTGRESQL_PASSWORD=dev
       - POSTGRESQL_DATABASE=rabobank-travels-hotels-db
@@ -81,15 +101,35 @@ services:
     networks:
       - rabobank-travels-network
     volumes:
-      - "./volumes/rabobank-travels-hotels-primary-db:/bitnami/postgresql"
+      - "./volumes/rabobank-travels-hotels-db/primary:/bitnami/postgresql"
+  rabobank-travels-hotels-replica-db:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/postgresql:16
+    container_name: rabobank-travels-hotels-replica-db
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=dev_replica
+      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_MASTER_HOST=rabobank-travels-hotels-primary-db
+      - POSTGRESQL_PASSWORD=dev
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 5438:5432
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-hotels-db/replica:/bitnami/postgresql"
+    depends_on:
+      - rabobank-travels-hotels-primary-db
   rabobank-travels-rent-car-primary-db:
     <<: *rabobank-travels-common
     image: docker.io/bitnami/postgresql:16
     container_name: rabobank-travels-rent-car-primary-db
     environment:
-      #      - POSTGRESQL_REPLICATION_MODE=master
-      #      - POSTGRESQL_REPLICATION_USER=dev_replica
-      #      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=dev_replica
+      - POSTGRESQL_REPLICATION_PASSWORD=dev
       - POSTGRESQL_USERNAME=dev
       - POSTGRESQL_PASSWORD=dev
       - POSTGRESQL_DATABASE=rabobank-travels-rent-car-db
@@ -99,7 +139,27 @@ services:
     networks:
       - rabobank-travels-network
     volumes:
-      - "./volumes/rabobank-travels-rent-car-primary-db:/bitnami/postgresql"
+      - "./volumes/rabobank-travels-rent-car-db/primary:/bitnami/postgresql"
+  rabobank-travels-rent-car-replica-db:
+    <<: *rabobank-travels-common
+    image: docker.io/bitnami/postgresql:16
+    container_name: rabobank-travels-rent-car-replica-db
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=dev_replica
+      - POSTGRESQL_REPLICATION_PASSWORD=dev
+      - POSTGRESQL_MASTER_HOST=rabobank-travels-rent-car-primary-db
+      - POSTGRESQL_PASSWORD=dev
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 5439:5432
+    networks:
+      - rabobank-travels-network
+    volumes:
+      - "./volumes/rabobank-travels-rent-car-db/replica:/bitnami/postgresql"
+    depends_on:
+      - rabobank-travels-rent-car-primary-db
   kafka:
     <<: *rabobank-travels-common
     image: docker.io/bitnami/kafka:3.6
@@ -119,17 +179,17 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
-  kafdrop:
-    <<: *rabobank-travels-common
-    image: obsidiandynamics/kafdrop:4.0.1
-    ports:
-      - 19000:9000
-    networks:
-      - rabobank-travels-network
-    environment:
-      - KAFKA_BROKERCONNECT=kafka:9092
-    depends_on:
-      - kafka
+#  kafdrop:
+#    <<: *rabobank-travels-common
+#    image: obsidiandynamics/kafdrop:4.0.1
+#    ports:
+#      - 19000:9000
+#    networks:
+#      - rabobank-travels-network
+#    environment:
+#      - KAFKA_BROKERCONNECT=kafka:9092
+#    depends_on:
+#      - kafka
 
 networks:
   rabobank-travels-network:
