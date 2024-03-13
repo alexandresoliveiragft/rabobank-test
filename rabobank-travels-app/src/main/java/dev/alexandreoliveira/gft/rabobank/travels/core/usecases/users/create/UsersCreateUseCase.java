@@ -9,7 +9,7 @@ import java.util.List;
 
 public record UsersCreateUseCase(
         UsersCreateRepository repository
-) implements IUseCase<UserModel, UserModel> {
+) implements IUseCase.InOut<UserModel, UserModel> {
 
     @Override
     public OutputDTO<UserModel> execute(UserModel userModel) {

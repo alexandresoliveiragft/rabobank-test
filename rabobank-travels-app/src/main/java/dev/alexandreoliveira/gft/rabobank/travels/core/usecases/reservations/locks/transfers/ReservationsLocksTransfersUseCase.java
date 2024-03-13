@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ReservationsLocksTransfersUseCase implements IUseCase<ReservationModel, ReservationModel> {
+public class ReservationsLocksTransfersUseCase implements IUseCase.InOut<ReservationModel, ReservationModel> {
 
     private final ReservationsLocksTransfersRepository repository;
 

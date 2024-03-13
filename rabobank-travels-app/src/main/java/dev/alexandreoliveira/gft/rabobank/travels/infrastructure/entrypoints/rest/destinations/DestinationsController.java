@@ -39,12 +39,11 @@ class DestinationsController extends BaseRestController {
             @RequestBody @Valid DestinationsControllerCreateRequest request,
             UriComponentsBuilder uriComponentsBuilder
     ) {
-        DestinationsControllerCreateResponse response = service.create(request);
+        service.create(request);
         URI uri = uriComponentsBuilder
-                .path("destinations/{id}")
-                .buildAndExpand(response.id())
-                .toUri();
-        return ResponseEntity.created(uri).body(response);
+                .path("destinations/id")
+                .build().toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping(value = {"{id}"}, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -53,14 +52,8 @@ class DestinationsController extends BaseRestController {
             @RequestBody @Valid DestinationsControllerUpdateRequest request,
             UriComponentsBuilder uriComponentsBuilder
     ) {
-        DestinationsControllerUpdateResponse response = service.update(request);
-        URI uri = uriComponentsBuilder
-                .path("destinations/{id}")
-                .buildAndExpand(response.id())
-                .toUri();
-        var headers = new HttpHeaders();
-        headers.add(HttpHeaders.LOCATION, uri.toString());
-        return ResponseEntity.ok().headers(headers).body(response);
+        service.update(request);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})

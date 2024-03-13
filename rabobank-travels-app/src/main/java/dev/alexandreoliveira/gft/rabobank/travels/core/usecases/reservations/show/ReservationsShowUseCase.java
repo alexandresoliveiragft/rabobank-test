@@ -4,7 +4,7 @@ import dev.alexandreoliveira.gft.rabobank.travels.core.dtos.OutputDTO;
 import dev.alexandreoliveira.gft.rabobank.travels.core.models.ReservationModel;
 import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.IUseCase;
 
-public class ReservationsShowUseCase implements IUseCase<ReservationModel, ReservationModel> {
+public class ReservationsShowUseCase implements IUseCase.InOut<ReservationModel, ReservationModel> {
 
     private final ReservationsShowRepository repository;
 

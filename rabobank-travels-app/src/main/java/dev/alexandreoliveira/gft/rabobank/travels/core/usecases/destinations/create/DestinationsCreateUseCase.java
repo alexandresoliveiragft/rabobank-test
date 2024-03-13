@@ -1,22 +1,31 @@
 package dev.alexandreoliveira.gft.rabobank.travels.core.usecases.destinations.create;
 
-import dev.alexandreoliveira.gft.rabobank.travels.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.rabobank.travels.core.exceptions.CoreException;
 import dev.alexandreoliveira.gft.rabobank.travels.core.models.DestinationModel;
 import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.IUseCase;
+import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.destinations.commands.DestinationsCreateCommand;
 import dev.alexandreoliveira.gft.rabobank.travels.core.utils.validators.ModelValidatorUtil;
 
 import java.util.List;
 
-public record DestinationsCreateUseCase(
-        DestinationsCreateRepository repository
-) implements IUseCase<DestinationModel, DestinationModel> {
+public class DestinationsCreateUseCase implements IUseCase.In<DestinationModel> {
+
+    private final DestinationsCreateCommand command;
+
+    public DestinationsCreateUseCase(DestinationsCreateCommand command) {
+        this.command = command;
+    }
+
     @Override
-    public OutputDTO<DestinationModel> execute(DestinationModel input) {
+    public void execute(DestinationModel input) {
         List<String> errors = ModelValidatorUtil.isValid(input);
         if (!errors.isEmpty()) {
-            return new OutputDTO<>(errors);
+            throw new CoreException(
+                    errors,
+                    getClass().getName(),
+                    "Error to validate input"
+            );
         }
-        DestinationModel model = repository.save(input);
-        return new OutputDTO<>(model);
+        command.publishCreate(input);
     }
 }

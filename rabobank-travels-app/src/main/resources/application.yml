@@ -1,10 +1,86 @@
+#spring:
+#  application:
+#    name: rabobank-travels-app
+#  profiles:
+#    active: dev
+#  config:
+#    import: 'optional:configserver:http://dev:dev@localhost:8080'
+#  cloud:
+#    config:
+#      label: develop
+
+server:
+  port: 8081
+
+app:
+  databases:
+    write:
+      url: jdbc:postgresql://localhost:5432/rabobank-travels-db
+      username: dev
+      password: dev
+      hikari:
+        minimum-idle: 1
+        maximum-pool-size: 2
+        idle-timeout: 10000
+        max-lifetime: 60000
+        connection-timeout: 5000
+        pool-name: RabobankTravelsHikariPool
+      hibernate:
+        ddl-auto: validate
+        show-sql: true
+    read:
+      url: jdbc:postgresql://localhost:5436/rabobank-travels-db
+      username: dev_replica
+      password: dev
+      hikari:
+        minimum-idle: 1
+        maximum-pool-size: 2
+        idle-timeout: 10000
+        max-lifetime: 60000
+        connection-timeout: 5000
+        pool-name: RabobankTravelsHikariPool
+      hibernate:
+        ddl-auto: validate
+        show-sql: true
+
 spring:
-  application:
-    name: rabobank-travels-app
   profiles:
     active: dev
-  config:
-    import: 'optional:configserver:http://dev:dev@localhost:8080'
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
   cloud:
     config:
-      label: develop
+      import-check:
+        enabled: false
+  #  jpa:
+  #    hibernate:
+  #      ddl-auto: validate
+  #    show-sql: false
+  #  datasource:
+  #    url: jdbc:postgresql://localhost:5432/rabobank-travels-db
+  #    username: dev
+  #    password: dev
+  #    hikari:
+  #      minimum-idle: 1
+  #      maximum-pool-size: 2
+  #      idle-timeout: 10000
+  #      max-lifetime: 60000
+  #      connection-timeout: 5000
+  #      pool-name: RabobankTravelsHikariPool
+  flyway:
+    url: jdbc:postgresql://localhost:5432/rabobank-travels-db
+    user: dev
+    password: dev
+    encoding: UTF-8
+    baseline-on-migrate: true
+    clean-disabled: true
+    locations:
+      - "db/migrations/postgresql"
+    enabled: true
+  servlet:
+    multipart:
+      enabled: false
+  jackson:
+    default-property-inclusion: NON_NULL
+

@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.repositories;
+package dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.repositories.users;
 
 import dev.alexandreoliveira.gft.rabobank.travels.core.models.UserModel;
 import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.users.create.UsersCreateRepository;
@@ -11,18 +11,15 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Repository
-public class UsersRepository implements UsersCreateRepository, UsersShowRepository {
+public class WriteUsersRepository implements UsersCreateRepository {
 
     private final JpaRepository<UserEntity, UUID> jpaRepository;
 
-    public UsersRepository(@Qualifier("jpaUsersRepository") JpaRepository<UserEntity, UUID> jpaRepository) {
+    public WriteUsersRepository(@Qualifier("writeJpaUsersRepository") JpaRepository<UserEntity, UUID> jpaRepository) {
         this.jpaRepository = jpaRepository;
     }
 
@@ -35,10 +32,5 @@ public class UsersRepository implements UsersCreateRepository, UsersShowReposito
             throw new DataProvidersException("User found. Please, create with other parameters.");
         }
         return jpaRepository.save(entity);
-    }
-
-    @Override
-    public UserModel findUserById(UUID id) {
-        return jpaRepository.findById(id).orElse(new UserEntity());
     }
 }

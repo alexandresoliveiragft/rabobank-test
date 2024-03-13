@@ -5,11 +5,11 @@ import dev.alexandreoliveira.gft.rabobank.travels.flights.core.models.FlightMode
 import dev.alexandreoliveira.gft.rabobank.travels.flights.core.usecases.flights.create.FlightsCreateUseCase;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.core.usecases.flights.index.FlightsIndexUseCase;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.core.usecases.seats.create.SeatsCreateUseCase;
-import dev.alexandreoliveira.gft.rabobank.travels.flights.core.usecases.seats.index.SeatsIndexUseCase;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.entites.FlightEntity;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.entites.SeatEntity;
-import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.repositories.FlightsRepository;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.repositories.SeatsRepository;
+import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.repositories.flights.ReadFlightsRepository;
+import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.repositories.flights.WriteFlightsRepository;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.entrypoints.rest.flights.create.FlightsControllerCreateRequest;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.entrypoints.rest.flights.create.FlightsControllerCreateResponse;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.entrypoints.rest.flights.index.FlightsControllerIndexRequest;
@@ -27,13 +27,11 @@ public class FlightsService extends BaseService {
     private final FlightsCreateUseCase flightsCreateUseCase;
     private final FlightsIndexUseCase flightsIndexUseCase;
     private final SeatsCreateUseCase seatsCreateUseCase;
-    private final SeatsIndexUseCase seatsIndexUseCase;
 
-    public FlightsService(FlightsRepository flightsRepository, SeatsRepository seatsRepository) {
-        this.flightsCreateUseCase = new FlightsCreateUseCase(flightsRepository);
-        this.flightsIndexUseCase = new FlightsIndexUseCase(flightsRepository);
+    public FlightsService(WriteFlightsRepository writeFlightsRepository, ReadFlightsRepository readFlightsRepository, SeatsRepository seatsRepository) {
+        this.flightsCreateUseCase = new FlightsCreateUseCase(writeFlightsRepository);
+        this.flightsIndexUseCase = new FlightsIndexUseCase(readFlightsRepository);
         this.seatsCreateUseCase = new SeatsCreateUseCase(seatsRepository);
-        this.seatsIndexUseCase = new SeatsIndexUseCase(seatsRepository);
     }
 
     public FlightsControllerCreateResponse create(FlightsControllerCreateRequest request) {

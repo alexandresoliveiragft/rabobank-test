@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public record UsersShowUseCase(
         UsersShowRepository repository
-) implements IUseCase<UUID, UserModel> {
+) implements IUseCase.InOut<UUID, UserModel> {
 
     @Override
     public OutputDTO<UserModel> execute(UUID id) {
