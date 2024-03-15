@@ -8,33 +8,33 @@ x-aodev-travels-common:
         memory: 256M
 
 services:
-  aodev-travels-primary-db:
+  aodev-travels-reservations-primary-db:
     <<: *aodev-travels-common
     image: docker.io/bitnami/postgresql:16
-    container_name: aodev-travels-primary-db
+    container_name: aodev-travels-reservations-primary-db
     environment:
       - POSTGRESQL_REPLICATION_MODE=master
       - POSTGRESQL_REPLICATION_USER=dev_replica
       - POSTGRESQL_REPLICATION_PASSWORD=dev
       - POSTGRESQL_USERNAME=dev
       - POSTGRESQL_PASSWORD=dev
-      - POSTGRESQL_DATABASE=aodev-travels-db
+      - POSTGRESQL_DATABASE=aodev-travels-reservations-db
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
       - 5432:5432
     networks:
       - aodev-travels-network
     volumes:
-      - "./volumes/aodev-travels-db/primary:/bitnami/postgresql"
-  aodev-travels-replica-db:
+      - "./volumes/aodev-travels-reservations-db/primary:/bitnami/postgresql"
+  aodev-travels-reservations-replica-db:
     <<: *aodev-travels-common
     image: docker.io/bitnami/postgresql:16
-    container_name: aodev-travels-replica-db
+    container_name: aodev-travels-reservations-replica-db
     environment:
       - POSTGRESQL_REPLICATION_MODE=slave
       - POSTGRESQL_REPLICATION_USER=dev_replica
       - POSTGRESQL_REPLICATION_PASSWORD=dev
-      - POSTGRESQL_MASTER_HOST=aodev-travels-primary-db
+      - POSTGRESQL_MASTER_HOST=aodev-travels-reservations-primary-db
       - POSTGRESQL_PASSWORD=dev
       - POSTGRESQL_MASTER_PORT_NUMBER=5432
       - ALLOW_EMPTY_PASSWORD=yes
@@ -43,9 +43,9 @@ services:
     networks:
       - aodev-travels-network
     volumes:
-      - "./volumes/aodev-travels-db/replica:/bitnami/postgresql"
+      - "./volumes/aodev-travels-reservations-db/replica:/bitnami/postgresql"
     depends_on:
-      - aodev-travels-primary-db
+      - aodev-travels-reservations-primary-db
   aodev-travels-flights-primary-db:
     <<: *aodev-travels-common
     image: docker.io/bitnami/postgresql:16
