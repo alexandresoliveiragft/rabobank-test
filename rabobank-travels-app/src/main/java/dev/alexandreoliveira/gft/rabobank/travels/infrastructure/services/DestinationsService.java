@@ -30,7 +30,6 @@ public class DestinationsService extends BaseService {
         this.destinationsIndexUseCase = new DestinationsIndexUseCase(readDestinationsRepository);
     }
 
-    @Transactional(value = "writePostgreSQLTransactionManager", rollbackFor = {Throwable.class})
     public void create(
             DestinationsControllerCreateRequest request) {
         DestinationEntity destinationEntity = new DestinationEntity();
@@ -39,7 +38,6 @@ public class DestinationsService extends BaseService {
         destinationsCreateUseCase.execute(destinationEntity);
     }
 
-    @Transactional(value = "writePostgreSQLTransactionManager", rollbackFor = {Throwable.class})
     public void update(
             DestinationsControllerUpdateRequest request) {
         DestinationEntity destinationEntity = new DestinationEntity();
@@ -48,7 +46,6 @@ public class DestinationsService extends BaseService {
         destinationEntity.setState(request.state());
         destinationsUpdateUseCase.execute(destinationEntity);
     }
-
 
     public DestinationsControllerIndexResponse index(DestinationsControllerIndexRequest request) {
         var entity = new DestinationEntity();

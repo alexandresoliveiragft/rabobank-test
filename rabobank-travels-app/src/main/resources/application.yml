@@ -24,13 +24,13 @@ app:
         idle-timeout: 10000
         max-lifetime: 60000
         connection-timeout: 5000
-        pool-name: RabobankTravelsHikariPool
+        pool-name: WriteRabobankTravelsHikariPool
       hibernate:
         ddl-auto: validate
         show-sql: true
     read:
       url: jdbc:postgresql://localhost:5436/rabobank-travels-db
-      username: dev_replica
+      username: dev
       password: dev
       hikari:
         minimum-idle: 1
@@ -38,7 +38,7 @@ app:
         idle-timeout: 10000
         max-lifetime: 60000
         connection-timeout: 5000
-        pool-name: RabobankTravelsHikariPool
+        pool-name: ReadRabobankTravelsHikariPool
       hibernate:
         ddl-auto: validate
         show-sql: true
@@ -48,7 +48,7 @@ spring:
     active: dev
   main:
     allow-bean-definition-overriding: true
-    allow-circular-references: true
+    allow-circular-references: false
   cloud:
     config:
       import-check:

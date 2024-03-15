@@ -16,14 +16,15 @@ import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.p
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.repositories.users.WriteUsersRepository;
 import jakarta.persistence.EntityManager;
 import org.hibernate.cfg.AvailableSettings;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.JpaContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.jpa.repository.support.DefaultJpaContext;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -36,15 +37,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackageClasses = {
-        WriteDestinationsRepository.class,
-        WriteUsersRepository.class,
-        WriteReservationsRepository.class
-})
+@EnableJpaRepositories(
+        entityManagerFactoryRef = "writeEntityManagerFactory",
+        transactionManagerRef = "writeTransactionManager",
+        enableDefaultTransactions = false,
+        basePackageClasses = {
+                WriteDestinationsRepository.class,
+                WriteUsersRepository.class,
+                WriteReservationsRepository.class
+        })
 @EnableJpaAuditing
 public class WritePostgreSQLConfiguration {
 
@@ -59,7 +65,7 @@ public class WritePostgreSQLConfiguration {
         return () -> Optional.of("TravelsApp");
     }
 
-    @Bean
+    @Bean(name = "writeDataSource")
     public DataSource dataSource() {
 
         HikariConfig hikariConfig = new HikariConfig();
@@ -77,10 +83,12 @@ public class WritePostgreSQLConfiguration {
         return new HikariDataSource(hikariConfig);
     }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    @Bean(name = "writeEntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            @Qualifier("writeDataSource") DataSource dataSource
+    ) {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
-        entityManager.setDataSource(dataSource());
+        entityManager.setDataSource(dataSource);
         entityManager.setPackagesToScan("dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.entities");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -93,50 +101,58 @@ public class WritePostgreSQLConfiguration {
         return entityManager;
     }
 
-    @Bean(name = "writePostgreSQLTransactionManager")
-    public PlatformTransactionManager writePostgreSQLTransactionManager() {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-        return transactionManager;
+    @Bean(name = "writeTransactionManager")
+    public PlatformTransactionManager writeTransactionManager(
+            @Qualifier("writeEntityManagerFactory") LocalContainerEntityManagerFactoryBean entityManagerFactory
+    ) {
+        return new JpaTransactionManager(Objects.requireNonNull(entityManagerFactory.getObject()));
+    }
+
+    @Bean(name = "writeJpaContext")
+    public JpaContext writeJpaContext(
+            @Qualifier("writeEntityManagerFactory") LocalContainerEntityManagerFactoryBean entityManagerFactory
+    ) {
+        EntityManager entityManager = Objects.requireNonNull(entityManagerFactory.getObject()).createEntityManager();
+        return new DefaultJpaContext(Set.of(entityManager));
     }
 
     @Bean(name = "writeJpaUsersRepository")
-    public JpaRepository<UserEntity, UUID> writeJpaUsersRepository(JpaContext jpaContext) {
+    public JpaRepository<UserEntity, UUID> writeJpaUsersRepository(@Qualifier("writeJpaContext") JpaContext jpaContext) {
         return new SimpleJpaRepository<>(UserEntity.class, jpaContext.getEntityManagerByManagedType(UserEntity.class));
     }
 
     @Bean(name = "writeJpaDestinationsRepository")
-    public JpaRepository<DestinationEntity, UUID> writeJpaDestinationsRepository(JpaContext jpaContext) {
+    public JpaRepository<DestinationEntity, UUID> writeJpaDestinationsRepository(@Qualifier("writeJpaContext") JpaContext jpaContext) {
         return new SimpleJpaRepository<>(DestinationEntity.class, jpaContext.getEntityManagerByManagedType(DestinationEntity.class));
     }
 
     @Bean(name = "writeJpaReservationsRepository")
-    public JpaRepository<ReservationEntity, UUID> writeJpaReservationsRepository(JpaContext jpaContext) {
+    public JpaRepository<ReservationEntity, UUID> writeJpaReservationsRepository(@Qualifier("writeJpaContext") JpaContext jpaContext) {
         return new SimpleJpaRepository<>(ReservationEntity.class, jpaContext.getEntityManagerByManagedType(ReservationEntity.class));
     }
 
     @Bean(name = "writeJpaHotelsRepository")
-    public JpaRepository<HotelEntity, UUID> writeJpaHotelsRepository(JpaContext jpaContext) {
+    public JpaRepository<HotelEntity, UUID> writeJpaHotelsRepository(@Qualifier("writeJpaContext") JpaContext jpaContext) {
         return new SimpleJpaRepository<>(HotelEntity.class, jpaContext.getEntityManagerByManagedType(HotelEntity.class));
     }
 
     @Bean(name = "writeJpaGuestsRepository")
-    public JpaRepository<GuestEntity, UUID> writeJpaGuestsRepository(JpaContext jpaContext) {
+    public JpaRepository<GuestEntity, UUID> writeJpaGuestsRepository(@Qualifier("writeJpaContext") JpaContext jpaContext) {
         return new SimpleJpaRepository<>(GuestEntity.class, jpaContext.getEntityManagerByManagedType(GuestEntity.class));
     }
 
     @Bean(name = "writeJpaFlightsRepository")
-    public JpaRepository<FlightEntity, UUID> writeJpaFlightsRepository(JpaContext jpaContext) {
+    public JpaRepository<FlightEntity, UUID> writeJpaFlightsRepository(@Qualifier("writeJpaContext") JpaContext jpaContext) {
         return new SimpleJpaRepository<>(FlightEntity.class, jpaContext.getEntityManagerByManagedType(FlightEntity.class));
     }
 
     @Bean(name = "writeJpaSeatsRepository")
-    public JpaRepository<SeatEntity, UUID> writeJpaSeatsRepository(JpaContext jpaContext) {
+    public JpaRepository<SeatEntity, UUID> writeJpaSeatsRepository(@Qualifier("writeJpaContext") JpaContext jpaContext) {
         return new SimpleJpaRepository<>(SeatEntity.class, jpaContext.getEntityManagerByManagedType(SeatEntity.class));
     }
 
     @Bean(name = "writeJpaTransfersRepository")
-    public JpaRepository<TransferEntity, UUID> writeJpaTransfersRepository(JpaContext jpaContext) {
+    public JpaRepository<TransferEntity, UUID> writeJpaTransfersRepository(@Qualifier("writeJpaContext") JpaContext jpaContext) {
         return new SimpleJpaRepository<>(TransferEntity.class, jpaContext.getEntityManagerByManagedType(TransferEntity.class));
     }
 

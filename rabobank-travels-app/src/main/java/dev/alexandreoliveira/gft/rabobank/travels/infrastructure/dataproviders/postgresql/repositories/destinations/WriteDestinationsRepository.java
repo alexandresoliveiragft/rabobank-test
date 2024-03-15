@@ -8,17 +8,21 @@ import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.p
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
+@Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
 public class WriteDestinationsRepository implements DestinationsCreateRepository, DestinationsUpdateRepository {
 
     private final JpaRepository<DestinationEntity, UUID> jpaRepository;
 
     public WriteDestinationsRepository(@Qualifier("writeJpaDestinationsRepository") JpaRepository<DestinationEntity, UUID> jpaRepository) {
+
         this.jpaRepository = jpaRepository;
     }
 

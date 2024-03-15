@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional(transactionManager = "readTransactionManager", readOnly = true)
 public class ReadDestinationsRepository implements DestinationsIndexRepository {
 
     private final JpaRepository<DestinationEntity, UUID> jpaRepository;
