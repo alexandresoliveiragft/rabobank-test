@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
@@ -136,11 +137,13 @@ class FlightsControllerTest {
         FlightsControllerIndexResponse.Flight fakeFlight = new FlightsControllerIndexResponse.Flight(
                 UUID.randomUUID(),
                 "company",
+                123,
                 "from",
                 "to",
                 Collections.emptyList(),
                 LocalDateTime.now(),
-                LocalDateTime.now());
+                LocalDateTime.now(),
+                BigDecimal.ZERO);
         FlightsControllerIndexResponse fakeResponse = new FlightsControllerIndexResponse(List.of(fakeFlight));
 
         doReturn(fakeResponse)

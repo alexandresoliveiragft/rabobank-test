@@ -53,13 +53,19 @@ class SeatsServiceTest {
     @Test
     @Order(1)
     void whenReservationShouldExpectedErrorWhenDataIsIncorrect() {
-        var fakeSeat = new SeatsReservationsSubscriptionMessage.Seat();
-        var fakeMessage = new SeatsReservationsSubscriptionMessage();
-        fakeMessage.setSeats(List.of(fakeSeat));
+        var fakeSeat = new SeatsReservationsSubscriptionMessage.Seat(
+                UUID.randomUUID(),
+                UUID.randomUUID(),
+                null
+        );
+        var fakeMessage = new SeatsReservationsSubscriptionMessage(List.of(fakeSeat));
 
         var sut = new SeatsService(mockSeatsRepository, seatsReservationsPublisher);
 
-        ServiceException serviceException = assertThrows(ServiceException.class, () -> sut.reservation(fakeMessage), "Expected a error here!");
+        ServiceException serviceException = assertThrows(
+                ServiceException.class,
+                () -> sut.reservation(fakeMessage),
+                "Expected a error here!");
 
         assertThat(serviceException.getErrors()).isNotEmpty();
         assertThat(serviceException.getMessage()).isEqualTo("Não foi possível reservar o assento.");
@@ -71,13 +77,13 @@ class SeatsServiceTest {
     @Test
     @Order(2)
     void whenReservationShouldExpectedErrorBecauseSeatAreReserved() {
-        var fakeSeat = new SeatsReservationsSubscriptionMessage.Seat();
-        fakeSeat.setSeatId(UUID.randomUUID());
-        fakeSeat.setReservationId(UUID.randomUUID());
-        fakeSeat.setFlightId(UUID.randomUUID());
+        var fakeSeat = new SeatsReservationsSubscriptionMessage.Seat(
+                UUID.randomUUID(),
+                UUID.randomUUID(),
+                UUID.randomUUID()
+        );
 
-        var fakeMessage = new SeatsReservationsSubscriptionMessage();
-        fakeMessage.setSeats(List.of(fakeSeat));
+        var fakeMessage = new SeatsReservationsSubscriptionMessage(List.of(fakeSeat));
 
         when(mockSeatsRepository.reservationSeats(any())).thenThrow(new RuntimeException("Error to reserve a seat. This seat has reservation."));
 
@@ -96,20 +102,20 @@ class SeatsServiceTest {
     @Test
     @Order(3)
     void whenReservationShouldExpectedAnswerWhenMessageAreCorrect() {
-        var fakeSeat = new SeatsReservationsSubscriptionMessage.Seat();
-        fakeSeat.setSeatId(UUID.randomUUID());
-        fakeSeat.setReservationId(UUID.randomUUID());
-        fakeSeat.setFlightId(UUID.randomUUID());
+        var fakeSeat = new SeatsReservationsSubscriptionMessage.Seat(
+                UUID.randomUUID(),
+                UUID.randomUUID(),
+                UUID.randomUUID()
+        );
 
-        var fakeMessage = new SeatsReservationsSubscriptionMessage();
-        fakeMessage.setSeats(List.of(fakeSeat));
+        var fakeMessage = new SeatsReservationsSubscriptionMessage(List.of(fakeSeat));
 
         var flightEntity = new FlightEntity();
         flightEntity.setId(UUID.randomUUID());
 
         var fakeSeatEntitty = new SeatEntity();
-        fakeSeatEntitty.setId(fakeSeat.getSeatId());
-        fakeSeatEntitty.setExternalId(fakeSeat.getReservationId());
+        fakeSeatEntitty.setId(fakeSeat.seatId());
+        fakeSeatEntitty.setExternalId(fakeSeat.reservationId());
         fakeSeatEntitty.setFlight(flightEntity);
         fakeSeatEntitty.setSeatNumber("21f");
 
