@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.reservations.show;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.reservations.show;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.ReservationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.ReservationModel;
 
 public interface ReservationsShowRepository {
 

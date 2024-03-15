@@ -1,13 +1,13 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.reservations.create;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.reservations.create;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.dtos.OutputDTO;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.FlightModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.ReservationModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.IUseCase;
-import dev.alexandreoliveira.gft.aodev.travels.core.utils.validators.ModelValidatorUtil;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.FlightEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.HotelEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.TransferEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.FlightModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.ReservationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.IUseCase;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.utils.validators.ModelValidatorUtil;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.FlightEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.HotelEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.TransferEntity;
 
 import java.util.List;
 

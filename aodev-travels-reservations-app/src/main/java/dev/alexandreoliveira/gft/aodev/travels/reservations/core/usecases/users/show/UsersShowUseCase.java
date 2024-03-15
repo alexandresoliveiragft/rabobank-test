@@ -1,8 +1,8 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.users.show;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.users.show;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.dtos.OutputDTO;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.UserModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.IUseCase;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.UserModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.IUseCase;
 
 import java.util.UUID;
 

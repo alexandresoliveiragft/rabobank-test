@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest;
 
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.exceptions.DataProvidersException;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.exceptions.DataProvidersException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

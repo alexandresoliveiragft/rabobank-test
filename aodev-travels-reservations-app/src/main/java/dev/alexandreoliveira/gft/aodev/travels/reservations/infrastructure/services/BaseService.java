@@ -1,7 +1,7 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.services;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.services;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.dtos.OutputDTO;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.services.exceptions.ServiceException;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.services.exceptions.ServiceException;
 
 class BaseService {
 

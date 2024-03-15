@@ -1,7 +1,7 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.transfers;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.transfers;
 
-import dev.alexandreoliveira.gft.aodev.travels.configurations.pubsub.KafkaConfiguration;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.services.ReservationsService;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.configurations.KafkaConfiguration;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.services.ReservationsService;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;

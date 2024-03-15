@@ -1,11 +1,11 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.kafka.reservations;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.kafka.reservations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.alexandreoliveira.gft.aodev.travels.configurations.pubsub.KafkaConfiguration;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.FlightModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.HotelModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.TransferModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.reservations.create.ReservationsCreatePublisher;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.configurations.KafkaConfiguration;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.FlightModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.HotelModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.TransferModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.reservations.create.ReservationsCreatePublisher;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Header;
 import org.apache.kafka.common.header.internals.RecordHeader;

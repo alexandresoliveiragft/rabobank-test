@@ -1,8 +1,8 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.GuestModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.HotelModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.ReservationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.GuestModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.HotelModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.ReservationModel;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +34,7 @@ public class HotelEntity extends BaseEntity implements HotelModel {
     @Column(name = "room", length = 50)
     private String room;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotels", cascade = CascadeType.ALL, targetEntity = GuestEntity.class)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel", cascade = CascadeType.ALL, targetEntity = GuestEntity.class)
     private List<? extends GuestModel> guests;
 
     @Column(name = "check_in", nullable = false)

@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.services.exceptions;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.services.exceptions;
 
 import java.util.Collections;
 import java.util.List;

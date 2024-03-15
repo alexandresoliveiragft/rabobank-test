@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
 
 public interface IUseCase {
 

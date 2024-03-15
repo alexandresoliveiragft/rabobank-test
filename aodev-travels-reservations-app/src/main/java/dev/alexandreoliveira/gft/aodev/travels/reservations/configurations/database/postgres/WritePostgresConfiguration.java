@@ -1,19 +1,18 @@
-package dev.alexandreoliveira.gft.aodev.travels.configurations.database.postgres;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.configurations.database.postgres;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import dev.alexandreoliveira.gft.aodev.travels.configurations.properties.WritePostgresConfigurationProperties;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.FlightEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.GuestEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.HotelEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.ReservationEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.SeatEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.TransferEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.UserEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.destinations.WriteDestinationsRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.reservations.WriteReservationsRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.users.WriteUsersRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.FlightEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.GuestEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.HotelEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.ReservationEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.SeatEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.TransferEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.UserEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.destinations.WriteDestinationsRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.reservations.WriteReservationsRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.users.WriteUsersRepository;
 import jakarta.persistence.EntityManager;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,11 +51,11 @@ import java.util.UUID;
                 WriteReservationsRepository.class
         })
 @EnableJpaAuditing
-public class WritePostgreSQLConfiguration {
+public class WritePostgresConfiguration {
 
     private final WritePostgresConfigurationProperties properties;
 
-    public WritePostgreSQLConfiguration(WritePostgresConfigurationProperties properties) {
+    public WritePostgresConfiguration(WritePostgresConfigurationProperties properties) {
         this.properties = properties;
     }
 
@@ -89,7 +88,7 @@ public class WritePostgreSQLConfiguration {
     ) {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource);
-        entityManager.setPackagesToScan("dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities");
+        entityManager.setPackagesToScan("dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManager.setJpaVendorAdapter(vendorAdapter);

@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.update;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.update;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.DestinationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
 
 public interface DestinationsUpdateRepository {
 

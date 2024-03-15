@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.update;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.update;
 
 import java.util.UUID;
 

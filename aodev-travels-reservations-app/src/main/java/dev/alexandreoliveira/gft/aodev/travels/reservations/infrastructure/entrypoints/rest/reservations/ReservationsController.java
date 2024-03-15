@@ -1,10 +1,10 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.reservations;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.reservations;
 
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.BaseRestController;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.reservations.create.ReservationsCreateControllerRequest;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.reservations.create.ReservationsCreateControllerResponse;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.reservations.show.ReservationsControllerShowResponse;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.services.ReservationsService;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.BaseRestController;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.reservations.create.ReservationsCreateControllerRequest;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.reservations.create.ReservationsCreateControllerResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.reservations.show.ReservationsControllerShowResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.services.ReservationsService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

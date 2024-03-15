@@ -1,10 +1,10 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.destinations;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.destinations;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.DestinationModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.create.DestinationsCreateRepository;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.update.DestinationsUpdateRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.exceptions.DataProvidersException;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.create.DestinationsCreateRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.update.DestinationsUpdateRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.exceptions.DataProvidersException;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

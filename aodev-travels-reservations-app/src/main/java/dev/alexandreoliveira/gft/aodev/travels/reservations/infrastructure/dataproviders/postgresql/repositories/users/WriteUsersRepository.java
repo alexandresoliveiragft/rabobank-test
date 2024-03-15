@@ -1,9 +1,9 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.users;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.users;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.UserModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.users.create.UsersCreateRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.exceptions.DataProvidersException;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.UserEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.UserModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.users.create.UsersCreateRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.exceptions.DataProvidersException;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

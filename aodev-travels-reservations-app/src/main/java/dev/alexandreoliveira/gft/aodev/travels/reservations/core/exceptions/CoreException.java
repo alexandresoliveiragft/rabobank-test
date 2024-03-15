@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.exceptions;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.exceptions;
 
 import java.util.Collections;
 import java.util.List;

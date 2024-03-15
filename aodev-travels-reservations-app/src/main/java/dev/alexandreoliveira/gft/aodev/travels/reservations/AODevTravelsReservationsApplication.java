@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-@ConfigurationPropertiesScan("dev.alexandreoliveira.gft.aodev.travels.configurations.properties")
+@ConfigurationPropertiesScan("dev.alexandreoliveira.gft.aodev.travels.reservations.configurations")
 public class AODevTravelsReservationsApplication {
 
     public static void main(String[] args) {

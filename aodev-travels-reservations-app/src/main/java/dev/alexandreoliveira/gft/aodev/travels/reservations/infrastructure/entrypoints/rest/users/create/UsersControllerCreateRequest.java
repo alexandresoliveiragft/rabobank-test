@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users.create;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users.create;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

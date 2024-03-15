@@ -1,11 +1,11 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.kafka.destinations;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.kafka.destinations;
 
-import dev.alexandreoliveira.gft.aodev.travels.configurations.pubsub.KafkaConfiguration;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.DestinationModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.commands.DestinationsCreateCommand;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.commands.DestinationsUpdateCommand;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.dto.destinations.CreateDestinationEvent;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.dto.destinations.UpdateDestinationEvent;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.configurations.KafkaConfiguration;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.commands.DestinationsCreateCommand;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.commands.DestinationsUpdateCommand;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.dto.destinations.CreateDestinationEvent;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.dto.destinations.UpdateDestinationEvent;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 

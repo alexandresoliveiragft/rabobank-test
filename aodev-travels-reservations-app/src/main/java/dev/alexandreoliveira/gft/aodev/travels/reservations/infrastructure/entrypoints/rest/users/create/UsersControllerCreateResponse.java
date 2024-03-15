@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users.create;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users.create;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.UserModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.UserModel;
 
 import java.util.UUID;
 

@@ -1,10 +1,10 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.create;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.create;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.exceptions.CoreException;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.DestinationModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.IUseCase;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.commands.DestinationsCreateCommand;
-import dev.alexandreoliveira.gft.aodev.travels.core.utils.validators.ModelValidatorUtil;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.exceptions.CoreException;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.IUseCase;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.commands.DestinationsCreateCommand;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.utils.validators.ModelValidatorUtil;
 
 import java.util.List;
 

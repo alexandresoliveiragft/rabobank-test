@@ -1,9 +1,9 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users;
 
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users.create.UsersControllerCreateRequest;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users.create.UsersControllerCreateResponse;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users.show.UsersControllerShowResponse;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.services.UsersService;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users.create.UsersControllerCreateRequest;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users.create.UsersControllerCreateResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users.show.UsersControllerShowResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.services.UsersService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
