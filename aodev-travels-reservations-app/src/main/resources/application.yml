@@ -15,7 +15,7 @@ server:
 app:
   databases:
     write:
-      url: jdbc:postgresql://localhost:5432/aodev-travels-db
+      url: jdbc:postgresql://localhost:5432/aodev-travels-reservations-db
       username: dev
       password: dev
       hikari:
@@ -29,7 +29,7 @@ app:
         ddl-auto: validate
         show-sql: true
     read:
-      url: jdbc:postgresql://localhost:5436/aodev-travels-db
+      url: jdbc:postgresql://localhost:5436/aodev-travels-reservations-db
       username: dev
       password: dev
       hikari:
@@ -69,7 +69,7 @@ spring:
   #      connection-timeout: 5000
   #      pool-name: RabobankTravelsHikariPool
   flyway:
-    url: jdbc:postgresql://localhost:5432/aodev-travels-db
+    url: jdbc:postgresql://localhost:5432/aodev-travels-reservations-db
     user: dev
     password: dev
     encoding: UTF-8

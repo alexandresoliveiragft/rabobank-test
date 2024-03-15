@@ -1,14 +1,13 @@
-package dev.alexandreoliveira.gft.aodev.travels.configurations.database.postgres;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.configurations.database.postgres;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import dev.alexandreoliveira.gft.aodev.travels.configurations.properties.ReadPostgresConfigurationProperties;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.ReservationEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.UserEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.destinations.ReadDestinationsRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.reservations.ReadReservationsRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.users.ReadUsersRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.ReservationEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.UserEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.destinations.ReadDestinationsRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.reservations.ReadReservationsRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.users.ReadUsersRepository;
 import jakarta.persistence.EntityManager;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,11 +39,11 @@ import java.util.UUID;
                 ReadUsersRepository.class,
                 ReadReservationsRepository.class
         })
-public class ReadPostgreSQLConfiguration {
+public class ReadPostgresConfiguration {
 
     private final ReadPostgresConfigurationProperties properties;
 
-    public ReadPostgreSQLConfiguration(ReadPostgresConfigurationProperties properties) {
+    public ReadPostgresConfiguration(ReadPostgresConfigurationProperties properties) {
         this.properties = properties;
     }
 
@@ -72,7 +71,7 @@ public class ReadPostgreSQLConfiguration {
     ) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
-        entityManagerFactoryBean.setPackagesToScan("dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities");
+        entityManagerFactoryBean.setPackagesToScan("dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);

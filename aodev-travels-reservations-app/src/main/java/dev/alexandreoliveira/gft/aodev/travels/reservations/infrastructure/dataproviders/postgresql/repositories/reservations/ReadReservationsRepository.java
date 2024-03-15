@@ -1,8 +1,8 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.reservations;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.reservations;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.ReservationModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.reservations.show.ReservationsShowRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.ReservationEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.ReservationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.reservations.show.ReservationsShowRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.ReservationEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

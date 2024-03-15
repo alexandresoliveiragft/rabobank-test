@@ -1,8 +1,8 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.reservations.show;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.reservations.show;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.dtos.OutputDTO;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.ReservationModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.IUseCase;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.ReservationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.IUseCase;
 
 public class ReservationsShowUseCase implements IUseCase.InOut<ReservationModel, ReservationModel> {
 

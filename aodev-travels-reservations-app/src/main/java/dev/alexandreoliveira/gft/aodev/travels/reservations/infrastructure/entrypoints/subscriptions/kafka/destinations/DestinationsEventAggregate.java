@@ -1,10 +1,10 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.subscriptions.kafka.destinations;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.subscriptions.kafka.destinations;
 
-import dev.alexandreoliveira.gft.aodev.travels.configurations.pubsub.KafkaConfiguration;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.destinations.WriteDestinationsRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.dto.destinations.CreateDestinationEvent;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.dto.destinations.UpdateDestinationEvent;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.configurations.KafkaConfiguration;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.destinations.WriteDestinationsRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.dto.destinations.CreateDestinationEvent;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.dto.destinations.UpdateDestinationEvent;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;

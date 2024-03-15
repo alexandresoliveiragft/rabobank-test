@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations.update;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.update;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

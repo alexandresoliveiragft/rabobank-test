@@ -1,8 +1,8 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.reservations.locks.flights;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.reservations.locks.flights;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.dtos.OutputDTO;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.ReservationModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.IUseCase;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.ReservationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.IUseCase;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;

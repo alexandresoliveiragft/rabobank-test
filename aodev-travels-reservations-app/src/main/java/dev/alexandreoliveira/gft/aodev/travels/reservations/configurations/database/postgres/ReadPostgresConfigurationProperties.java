@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.configurations.properties;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.configurations.database.postgres;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

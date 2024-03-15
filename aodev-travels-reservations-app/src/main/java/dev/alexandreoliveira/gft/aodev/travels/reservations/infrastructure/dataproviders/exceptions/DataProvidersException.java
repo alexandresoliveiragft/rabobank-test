@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.exceptions;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.exceptions;
 
 import java.util.Collections;
 import java.util.List;

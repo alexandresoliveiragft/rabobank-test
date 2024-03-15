@@ -1,13 +1,13 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations;
 
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.BaseRestController;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations.create.DestinationsControllerCreateRequest;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations.create.DestinationsControllerCreateResponse;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations.index.DestinationsControllerIndexRequest;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations.index.DestinationsControllerIndexResponse;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations.update.DestinationsControllerUpdateRequest;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations.update.DestinationsControllerUpdateResponse;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.services.DestinationsService;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.BaseRestController;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.create.DestinationsControllerCreateRequest;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.create.DestinationsControllerCreateResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.index.DestinationsControllerIndexRequest;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.index.DestinationsControllerIndexResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.update.DestinationsControllerUpdateRequest;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.update.DestinationsControllerUpdateResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.services.DestinationsService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.users.create;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.users.create;
 
 import java.util.UUID;
 

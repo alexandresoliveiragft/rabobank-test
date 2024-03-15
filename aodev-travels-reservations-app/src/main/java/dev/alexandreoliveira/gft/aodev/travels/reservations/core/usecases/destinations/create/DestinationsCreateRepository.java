@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.create;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.create;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.DestinationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
 
 public interface DestinationsCreateRepository {
 

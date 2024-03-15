@@ -1,10 +1,10 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.index;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.index;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.dtos.OutputDTO;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.DestinationModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.IUseCase;
-import dev.alexandreoliveira.gft.aodev.travels.core.utils.validators.ModelValidatorUtil;
-import dev.alexandreoliveira.gft.aodev.travels.core.utils.validators.groups.OnDestinationsIndex;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.IUseCase;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.utils.validators.ModelValidatorUtil;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.utils.validators.groups.OnDestinationsIndex;
 
 import java.util.List;
 

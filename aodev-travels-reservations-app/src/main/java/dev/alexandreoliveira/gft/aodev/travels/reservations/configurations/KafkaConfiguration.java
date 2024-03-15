@@ -1,10 +1,10 @@
-package dev.alexandreoliveira.gft.aodev.travels.configurations.pubsub;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.configurations;
 
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.flights.ReservationsLocksFlightsSubscriptionMessage;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.hotels.ReservationsLocksHotelsSubscriptionMessage;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.transfers.ReservationsLocksTransfersSubscriptionMessage;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.dto.destinations.CreateDestinationEvent;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.dto.destinations.UpdateDestinationEvent;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.flights.ReservationsLocksFlightsSubscriptionMessage;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.hotels.ReservationsLocksHotelsSubscriptionMessage;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.transfers.ReservationsLocksTransfersSubscriptionMessage;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.dto.destinations.CreateDestinationEvent;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.dto.destinations.UpdateDestinationEvent;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

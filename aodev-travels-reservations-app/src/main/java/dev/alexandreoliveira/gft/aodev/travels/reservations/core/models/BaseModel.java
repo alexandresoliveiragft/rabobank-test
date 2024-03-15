@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.models;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.models;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

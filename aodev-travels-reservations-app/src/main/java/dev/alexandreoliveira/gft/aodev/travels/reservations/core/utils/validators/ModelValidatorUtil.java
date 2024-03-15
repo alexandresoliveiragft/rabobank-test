@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.utils.validators;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.utils.validators;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;

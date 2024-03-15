@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.models;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.models;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.utils.validators.groups.OnDestinationsIndex;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.utils.validators.groups.OnDestinationsIndex;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

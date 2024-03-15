@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.dtos;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos;
 
 import java.util.Collections;
 import java.util.List;

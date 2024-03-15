@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

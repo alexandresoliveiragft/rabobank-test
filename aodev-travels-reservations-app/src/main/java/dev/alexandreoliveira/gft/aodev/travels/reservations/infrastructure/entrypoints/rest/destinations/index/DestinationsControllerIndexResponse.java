@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.destinations.index;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.index;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.DestinationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
 
 import java.util.List;
 import java.util.UUID;

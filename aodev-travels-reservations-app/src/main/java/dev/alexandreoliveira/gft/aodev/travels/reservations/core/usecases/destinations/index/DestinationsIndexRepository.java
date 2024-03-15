@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.core.usecases.destinations.index;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.index;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.DestinationModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.events.dto;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.events.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

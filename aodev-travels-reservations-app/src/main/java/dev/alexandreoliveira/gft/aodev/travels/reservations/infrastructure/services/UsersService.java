@@ -1,15 +1,15 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.services;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.services;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.dtos.OutputDTO;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.UserModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.users.create.UsersCreateUseCase;
-import dev.alexandreoliveira.gft.aodev.travels.core.usecases.users.show.UsersShowUseCase;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities.UserEntity;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.users.ReadUsersRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.repositories.users.WriteUsersRepository;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users.create.UsersControllerCreateRequest;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users.create.UsersControllerCreateResponse;
-import dev.alexandreoliveira.gft.aodev.travels.infrastructure.entrypoints.rest.users.show.UsersControllerShowResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.UserModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.users.create.UsersCreateUseCase;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.users.show.UsersShowUseCase;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.UserEntity;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.users.ReadUsersRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.users.WriteUsersRepository;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users.create.UsersControllerCreateRequest;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users.create.UsersControllerCreateResponse;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.users.show.UsersControllerShowResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

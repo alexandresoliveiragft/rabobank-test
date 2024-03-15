@@ -1,6 +1,6 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.UserModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.UserModel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

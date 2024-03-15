@@ -1,7 +1,7 @@
-package dev.alexandreoliveira.gft.aodev.travels.infrastructure.dataproviders.postgresql.entities;
+package dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities;
 
-import dev.alexandreoliveira.gft.aodev.travels.core.models.GuestModel;
-import dev.alexandreoliveira.gft.aodev.travels.core.models.HotelModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.GuestModel;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.HotelModel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
