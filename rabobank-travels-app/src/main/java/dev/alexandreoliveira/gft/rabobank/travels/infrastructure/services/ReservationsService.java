@@ -13,7 +13,8 @@ import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.p
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.entities.ReservationEntity;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.entities.SeatEntity;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.entities.TransferEntity;
-import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.repositories.ReservationsRepository;
+import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.repositories.reservations.ReadReservationsRepository;
+import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.repositories.reservations.WriteReservationsRepository;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.entrypoints.rest.reservations.create.ReservationsCreateControllerRequest;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.entrypoints.rest.reservations.create.ReservationsCreateControllerResponse;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.entrypoints.rest.reservations.show.ReservationsControllerShowResponse;
@@ -31,7 +32,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@Transactional(rollbackFor = {Throwable.class})
 public class ReservationsService extends BaseService {
 
     private final ReservationsCreateUseCase reservationsCreateUseCase;
@@ -40,14 +40,18 @@ public class ReservationsService extends BaseService {
     private final ReservationsLocksTransfersUseCase reservationsLocksTransfersUseCase;
     private final ReservationsShowUseCase reservationsShowUseCase;
 
-    public ReservationsService(KafkaTemplate<String, String> kafkaTemplate, ReservationsRepository reservationsRepository) {
-        this.reservationsCreateUseCase = new ReservationsCreateUseCase(new ReservationsLocksPublishersImpl(kafkaTemplate), reservationsRepository);
-        this.reservationsLocksHotelsUseCase = new ReservationsLocksHotelsUseCase(reservationsRepository);
-        this.reservationsLocksFlightsUseCase = new ReservationsLocksFlightsUseCase(reservationsRepository);
-        this.reservationsLocksTransfersUseCase = new ReservationsLocksTransfersUseCase(reservationsRepository);
-        this.reservationsShowUseCase = new ReservationsShowUseCase(reservationsRepository);
+    public ReservationsService(
+            KafkaTemplate<String, Object> kafkaTemplate,
+            WriteReservationsRepository writeReservationsRepository,
+            ReadReservationsRepository readReservationsRepository) {
+        this.reservationsCreateUseCase = new ReservationsCreateUseCase(new ReservationsLocksPublishersImpl(kafkaTemplate), writeReservationsRepository);
+        this.reservationsLocksHotelsUseCase = new ReservationsLocksHotelsUseCase(writeReservationsRepository);
+        this.reservationsLocksFlightsUseCase = new ReservationsLocksFlightsUseCase(writeReservationsRepository);
+        this.reservationsLocksTransfersUseCase = new ReservationsLocksTransfersUseCase(writeReservationsRepository);
+        this.reservationsShowUseCase = new ReservationsShowUseCase(readReservationsRepository);
     }
 
+    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public ReservationsCreateControllerResponse create(ReservationsCreateControllerRequest request) {
         List<BigDecimal> prices = new ArrayList<>();
 
@@ -115,6 +119,7 @@ public class ReservationsService extends BaseService {
         return new ReservationsCreateControllerResponse(output.data().getId(), output.data().getStatus());
     }
 
+    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public void updateHotelsLockReservation(ReservationsLocksHotelsSubscriptionMessage message) {
         var hotelEntity = new HotelEntity();
         hotelEntity.setExternalId(message.hotelId());
@@ -127,30 +132,32 @@ public class ReservationsService extends BaseService {
         reservationsLocksHotelsUseCase.execute(reservationEntity);
     }
 
+    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public void updateFlightsLockReservation(ReservationsLocksFlightsSubscriptionMessage message) {
-        message.getReservations().forEach(model -> {
+        message.reservations().forEach(model -> {
             var seatEntity = new SeatEntity();
-            seatEntity.setExternalId(model.getSeatId());
+            seatEntity.setExternalId(model.seatId());
 
             var flight = new FlightEntity();
-            flight.setExternalId(model.getFlightId());
+            flight.setExternalId(model.flightId());
             flight.setSeats(List.of(seatEntity));
 
             var reservationEntity = new ReservationEntity();
-            reservationEntity.setId(model.getReservationId());
+            reservationEntity.setId(model.reservationId());
             reservationEntity.setFlights(List.of(flight));
 
             reservationsLocksFlightsUseCase.execute(reservationEntity);
         });
     }
 
+    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public void updateTransfersLockReservation(ReservationsLocksTransfersSubscriptionMessage message) {
-        message.getReservedTransfers().forEach(model -> {
+        message.reservedTransfers().forEach(model -> {
             var transfer = new TransferEntity();
-            transfer.setExternalId(model.getTransferId());
+            transfer.setExternalId(model.transferId());
 
             var reservationEntity = new ReservationEntity();
-            reservationEntity.setId(model.getReservationId());
+            reservationEntity.setId(model.reservationId());
             reservationEntity.setTransfers(List.of(transfer));
 
             reservationsLocksTransfersUseCase.execute(reservationEntity);

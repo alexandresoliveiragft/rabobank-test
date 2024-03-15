@@ -1,7 +1,5 @@
 package dev.alexandreoliveira.gft.rabobank.travels.infrastructure.entrypoints.subscriptions.kafka.reservations.locks.hotels;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.alexandreoliveira.gft.rabobank.travels.configurations.pubsub.KafkaConfiguration;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.services.ReservationsService;
 import org.springframework.kafka.annotation.KafkaHandler;
@@ -14,20 +12,13 @@ import org.springframework.stereotype.Component;
 public class ReservationsLocksHotelsSubscription {
 
     private final ReservationsService service;
-    private final ObjectMapper objectMapper;
 
     public ReservationsLocksHotelsSubscription(ReservationsService service) {
         this.service = service;
-        this.objectMapper = new ObjectMapper();
     }
 
     @KafkaHandler
-    public void listen(@Payload String message) {
-        try {
-            ReservationsLocksHotelsSubscriptionMessage reservationsLocksHotelsSubscriptionMessage = objectMapper.readValue(message, ReservationsLocksHotelsSubscriptionMessage.class);
-            service.updateHotelsLockReservation(reservationsLocksHotelsSubscriptionMessage);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+    public void listen(@Payload ReservationsLocksHotelsSubscriptionMessage message) {
+        service.updateHotelsLockReservation(message);
     }
 }

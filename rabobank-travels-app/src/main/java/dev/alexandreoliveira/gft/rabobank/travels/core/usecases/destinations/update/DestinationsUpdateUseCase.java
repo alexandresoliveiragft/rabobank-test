@@ -1,22 +1,31 @@
 package dev.alexandreoliveira.gft.rabobank.travels.core.usecases.destinations.update;
 
-import dev.alexandreoliveira.gft.rabobank.travels.core.dtos.OutputDTO;
+import dev.alexandreoliveira.gft.rabobank.travels.core.exceptions.CoreException;
 import dev.alexandreoliveira.gft.rabobank.travels.core.models.DestinationModel;
 import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.IUseCase;
+import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.destinations.commands.DestinationsUpdateCommand;
 import dev.alexandreoliveira.gft.rabobank.travels.core.utils.validators.ModelValidatorUtil;
 
 import java.util.List;
 
-public record DestinationsUpdateUseCase(
-        DestinationsUpdateRepository repository
-) implements IUseCase<DestinationModel, DestinationModel> {
+public class DestinationsUpdateUseCase implements IUseCase.In<DestinationModel> {
+
+    private final DestinationsUpdateCommand command;
+
+    public DestinationsUpdateUseCase(DestinationsUpdateCommand command) {
+        this.command = command;
+    }
+
     @Override
-    public OutputDTO<DestinationModel> execute(DestinationModel input) {
+    public void execute(DestinationModel input) {
         List<String> errors = ModelValidatorUtil.isValid(input);
         if (!errors.isEmpty()) {
-            return new OutputDTO<>(errors);
+            throw new CoreException(
+                    errors,
+                    getClass().getName(),
+                    "Error to update Destination"
+            );
         }
-        DestinationModel model = repository.update(input);
-        return new OutputDTO<>(model);
+        command.publishUpdate(input);
     }
 }

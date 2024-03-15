@@ -28,13 +28,13 @@ public class SeatsService extends BaseService {
     }
 
     public void reservation(SeatsReservationsSubscriptionMessage message) {
-        List<SeatEntity> seats = message.getSeats().stream().map(seat -> {
+        List<SeatEntity> seats = message.seats().stream().map(seat -> {
             var flightEntity = new FlightEntity();
-            flightEntity.setId(seat.getFlightId());
+            flightEntity.setId(seat.flightId());
 
             var seatEntity = new SeatEntity();
-            seatEntity.setId(seat.getSeatId());
-            seatEntity.setExternalId(seat.getReservationId());
+            seatEntity.setId(seat.seatId());
+            seatEntity.setExternalId(seat.reservationId());
             seatEntity.setFlight(flightEntity);
             return seatEntity;
         }).toList();

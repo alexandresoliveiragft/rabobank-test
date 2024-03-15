@@ -1,4 +1,4 @@
-package dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.repositories;
+package dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.repositories.reservations;
 
 import dev.alexandreoliveira.gft.rabobank.travels.core.models.FlightModel;
 import dev.alexandreoliveira.gft.rabobank.travels.core.models.GuestModel;
@@ -10,7 +10,6 @@ import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.reservations.cre
 import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.reservations.locks.flights.ReservationsLocksFlightsRepository;
 import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.reservations.locks.hotels.ReservationsLocksHotelsRepository;
 import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.reservations.locks.transfers.ReservationsLocksTransfersRepository;
-import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.reservations.show.ReservationsShowRepository;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.exceptions.DataProvidersException;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.entities.FlightEntity;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.entities.GuestEntity;
@@ -28,7 +27,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class ReservationsRepository implements ReservationsCreateRepository, ReservationsLocksHotelsRepository, ReservationsLocksFlightsRepository, ReservationsLocksTransfersRepository, ReservationsShowRepository {
+public class WriteReservationsRepository implements ReservationsCreateRepository, ReservationsLocksHotelsRepository, ReservationsLocksFlightsRepository, ReservationsLocksTransfersRepository {
 
     private final JpaRepository<ReservationEntity, UUID> jpaReservationsRepository;
     private final JpaRepository<HotelEntity, UUID> jpaHotelsRepository;
@@ -37,13 +36,13 @@ public class ReservationsRepository implements ReservationsCreateRepository, Res
     private final JpaRepository<SeatEntity, UUID> jpaSeatsRepository;
     private final JpaRepository<TransferEntity, UUID> jpaTransfersRepository;
 
-    public ReservationsRepository(
-            @Qualifier("jpaReservationsRepository") JpaRepository<ReservationEntity, UUID> jpaReservationsRepository,
-            @Qualifier("jpaHotelsRepository") JpaRepository<HotelEntity, UUID> jpaHotelsRepository,
-            @Qualifier("jpaGuestsRepository") JpaRepository<GuestEntity, UUID> jpaGuestsRepository,
-            @Qualifier("jpaFlightsRepository") JpaRepository<FlightEntity, UUID> jpaFlightsRepository,
-            @Qualifier("jpaSeatsRepository") JpaRepository<SeatEntity, UUID> jpaSeatsRepository,
-            @Qualifier("jpaTransfersRepository") JpaRepository<TransferEntity, UUID> jpaTransfersRepository) {
+    public WriteReservationsRepository(
+            @Qualifier("writeJpaReservationsRepository") JpaRepository<ReservationEntity, UUID> jpaReservationsRepository,
+            @Qualifier("writeJpaHotelsRepository") JpaRepository<HotelEntity, UUID> jpaHotelsRepository,
+            @Qualifier("writeJpaGuestsRepository") JpaRepository<GuestEntity, UUID> jpaGuestsRepository,
+            @Qualifier("writeJpaFlightsRepository") JpaRepository<FlightEntity, UUID> jpaFlightsRepository,
+            @Qualifier("writeJpaSeatsRepository") JpaRepository<SeatEntity, UUID> jpaSeatsRepository,
+            @Qualifier("writeJpaTransfersRepository") JpaRepository<TransferEntity, UUID> jpaTransfersRepository) {
         this.jpaReservationsRepository = jpaReservationsRepository;
         this.jpaHotelsRepository = jpaHotelsRepository;
         this.jpaGuestsRepository = jpaGuestsRepository;
@@ -141,14 +140,5 @@ public class ReservationsRepository implements ReservationsCreateRepository, Res
             }
         });
         return jpaReservationsRepository.save(reservationEntity);
-    }
-
-    @Override
-    public ReservationModel findById(ReservationModel model) {
-        Optional<ReservationEntity> optionalReservation = jpaReservationsRepository.findById(model.getId());
-        if (optionalReservation.isEmpty()) {
-            throw new DataProvidersException("Reservation not found.");
-        }
-        return optionalReservation.get();
     }
 }

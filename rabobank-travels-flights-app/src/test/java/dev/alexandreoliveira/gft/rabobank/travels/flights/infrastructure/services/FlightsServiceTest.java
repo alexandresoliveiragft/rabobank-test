@@ -2,8 +2,9 @@ package dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.servic
 
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.entites.FlightEntity;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.entites.SeatEntity;
-import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.repositories.FlightsRepository;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.repositories.SeatsRepository;
+import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.repositories.flights.ReadFlightsRepository;
+import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.dataproviders.postgresql.repositories.flights.WriteFlightsRepository;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.entrypoints.rest.flights.create.FlightsControllerCreateRequest;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.entrypoints.rest.flights.create.FlightsControllerCreateResponse;
 import dev.alexandreoliveira.gft.rabobank.travels.flights.infrastructure.entrypoints.rest.flights.index.FlightsControllerIndexRequest;
@@ -36,7 +37,10 @@ class FlightsServiceTest {
     private AutoCloseable closeable;
 
     @Mock
-    FlightsRepository mockFlightsRepository;
+    WriteFlightsRepository mockWriteFlightsRepository;
+
+    @Mock
+    ReadFlightsRepository mockReadFlightsRepository;
 
     @Mock
     SeatsRepository mockSeatsRepository;
@@ -55,15 +59,14 @@ class FlightsServiceTest {
     @Order(1)
     void whenCreateShouldExpectedErrorWhenDataIsIncorrect() {
         var fakeRequest = new FlightsControllerCreateRequest(null, null, null, null, null, null, null, null);
-        var sut = new FlightsService(mockFlightsRepository, mockSeatsRepository);
+        var sut = new FlightsService(mockWriteFlightsRepository, mockReadFlightsRepository, mockSeatsRepository);
 
         ServiceException serviceException = assertThrows(ServiceException.class, () -> sut.create(fakeRequest), "Expected a error here!");
 
         assertThat(serviceException.getErrors()).isNotEmpty();
         assertThat(serviceException.getMessage()).isEqualTo("Erro ao cadastrar um novo voo!");
 
-        clearInvocations(mockFlightsRepository, mockSeatsRepository);
-        reset(mockFlightsRepository, mockSeatsRepository);
+        clearAndResetMocks();
     }
 
     @Test
@@ -84,43 +87,41 @@ class FlightsServiceTest {
         var fakeFlightEntity = new FlightEntity();
         fakeFlightEntity.setId(UUID.randomUUID());
 
-        doReturn(fakeFlightEntity).when(mockFlightsRepository).save(any());
+        doReturn(fakeFlightEntity).when(mockWriteFlightsRepository).save(any());
 
         var fakeSeatEntity = new SeatEntity();
         fakeSeatEntity.setId(UUID.randomUUID());
 
         doReturn(fakeSeatEntity).when(mockSeatsRepository).save(any());
 
-        var sut = new FlightsService(mockFlightsRepository, mockSeatsRepository);
+        var sut = new FlightsService(mockWriteFlightsRepository, mockReadFlightsRepository, mockSeatsRepository);
 
         FlightsControllerCreateResponse response = sut.create(fakeRequest);
 
         assertThat(response.id()).isNotNull();
 
-        clearInvocations(mockFlightsRepository, mockSeatsRepository);
-        reset(mockFlightsRepository, mockSeatsRepository);
+        clearAndResetMocks();
     }
 
     @Test
     @Order(3)
     void whenIndexShouldExpectedErrorWhenDataIsIncorrect() {
         var fakeRequest = new FlightsControllerIndexRequest(null, null);
-        var sut = new FlightsService(mockFlightsRepository, mockSeatsRepository);
+        var sut = new FlightsService(mockWriteFlightsRepository, mockReadFlightsRepository, mockSeatsRepository);
 
         ServiceException serviceException = assertThrows(ServiceException.class, () -> sut.index(fakeRequest), "Expected a error here!");
 
         assertThat(serviceException.getErrors()).isNotEmpty();
         assertThat(serviceException.getMessage()).isEqualTo("Erro ao recuperar voos");
 
-        clearInvocations(mockFlightsRepository, mockSeatsRepository);
-        reset(mockFlightsRepository, mockSeatsRepository);
+        clearAndResetMocks();
     }
 
     @Test
     @Order(4)
     void whenIndexShouldExpectedCorrectAnswerWhenDataAreCorrect() {
         var fakeRequest = new FlightsControllerIndexRequest("Bel", "rec");
-        var sut = new FlightsService(mockFlightsRepository, mockSeatsRepository);
+        var sut = new FlightsService(mockWriteFlightsRepository, mockReadFlightsRepository, mockSeatsRepository);
 
         var fakeFlightId = UUID.randomUUID();
 
@@ -146,7 +147,7 @@ class FlightsServiceTest {
         fakeFlightEntity.setCheckOut(LocalDateTime.now());
 
         doReturn(List.of(fakeFlightEntity))
-                .when(mockFlightsRepository)
+                .when(mockReadFlightsRepository)
                 .findAllByParams(any());
 
         FlightsControllerIndexResponse response = sut.index(fakeRequest);
@@ -154,8 +155,11 @@ class FlightsServiceTest {
         assertThat(response).isNotNull();
         assertThat(response.flights()).isNotEmpty();
 
-        clearInvocations(mockFlightsRepository, mockSeatsRepository);
-        reset(mockFlightsRepository, mockSeatsRepository);
+        clearAndResetMocks();
     }
 
+    private void clearAndResetMocks() {
+        clearInvocations(mockWriteFlightsRepository, mockReadFlightsRepository, mockSeatsRepository);
+        reset(mockWriteFlightsRepository, mockReadFlightsRepository, mockSeatsRepository);
+    }
 }

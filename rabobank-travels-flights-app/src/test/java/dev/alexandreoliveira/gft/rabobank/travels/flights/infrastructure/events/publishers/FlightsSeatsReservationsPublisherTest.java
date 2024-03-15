@@ -44,8 +44,8 @@ class FlightsSeatsReservationsPublisherTest {
     @Test
     void shouldCheckWhenMessageAreCorrect() throws InterruptedException {
         Map<String, Object> producerProps = KafkaTestUtils.producerProps(embeddedKafkaRule.getEmbeddedKafka());
-        ProducerFactory<String, String> producerFactory = new DefaultKafkaProducerFactory<>(producerProps);
-        KafkaTemplate<String, String> kafkaTemplate = new KafkaTemplate<>(producerFactory);
+        ProducerFactory<String, Object> producerFactory = new DefaultKafkaProducerFactory<>(producerProps);
+        KafkaTemplate<String, Object> kafkaTemplate = new KafkaTemplate<>(producerFactory);
 
         Map<String, Object> consumerProps = KafkaTestUtils.consumerProps("0", "true", embeddedKafkaRule.getEmbeddedKafka());
         DefaultKafkaConsumerFactory<String, String> consumerFactory = new DefaultKafkaConsumerFactory<>(consumerProps);

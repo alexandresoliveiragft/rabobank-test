@@ -2,7 +2,6 @@ package dev.alexandreoliveira.gft.rabobank.travels.core.usecases.reservations.cr
 
 import dev.alexandreoliveira.gft.rabobank.travels.core.dtos.OutputDTO;
 import dev.alexandreoliveira.gft.rabobank.travels.core.models.FlightModel;
-import dev.alexandreoliveira.gft.rabobank.travels.core.models.HotelModel;
 import dev.alexandreoliveira.gft.rabobank.travels.core.models.ReservationModel;
 import dev.alexandreoliveira.gft.rabobank.travels.core.usecases.IUseCase;
 import dev.alexandreoliveira.gft.rabobank.travels.core.utils.validators.ModelValidatorUtil;
@@ -10,11 +9,9 @@ import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.p
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.entities.HotelEntity;
 import dev.alexandreoliveira.gft.rabobank.travels.infrastructure.dataproviders.postgresql.entities.TransferEntity;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Stream;
 
-public class ReservationsCreateUseCase implements IUseCase<ReservationModel, ReservationModel> {
+public class ReservationsCreateUseCase implements IUseCase.InOut<ReservationModel, ReservationModel> {
 
     private final ReservationsCreatePublisher reservationsCreatePublisher;
     private final ReservationsCreateRepository repository;

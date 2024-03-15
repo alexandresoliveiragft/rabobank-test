@@ -8,7 +8,7 @@ import dev.alexandreoliveira.gft.rabobank.travels.core.utils.validators.groups.O
 
 import java.util.List;
 
-public class DestinationsIndexUseCase implements IUseCase<DestinationModel, List<? extends DestinationModel>> {
+public class DestinationsIndexUseCase implements IUseCase.InOut<DestinationModel, List<? extends DestinationModel>> {
 
     private final DestinationsIndexRepository repository;
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ReservationsLocksFlightsUseCase implements IUseCase<ReservationModel, ReservationModel> {
+public class ReservationsLocksFlightsUseCase implements IUseCase.InOut<ReservationModel, ReservationModel> {
 
     private final ReservationsLocksFlightsRepository repository;
 
