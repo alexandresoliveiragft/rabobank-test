@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>dev.alexandreoliveira.gft</groupId>
-  <artifactId>rabobank-travels</artifactId>
+  <artifactId>aodev-travels</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>rabobank-travels</name>
+  <name>aodev-travels</name>
   <url>http://maven.apache.org</url>
 
   <developers>
@@ -25,11 +25,11 @@
   </developers>
 
   <modules>
-    <module>rabobank-travels-app</module>
-    <module>rabobank-travels-flights-app</module>
-    <module>rabobank-travels-hotels-app</module>
-    <module>rabobank-travels-rent-car-app</module>
-    <module>rabobank-travels-config-app</module>
+    <module>aodev-travels-reservations-app</module>
+    <module>aodev-travels-flights-app</module>
+    <module>aodev-travels-hotels-app</module>
+    <module>aodev-travels-rent-car-app</module>
+    <module>aodev-travels-config-app</module>
   </modules>
 
   <properties>

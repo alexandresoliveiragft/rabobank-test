@@ -1,0 +1,71 @@
+server:
+  port: 8081
+
+app:
+  databases:
+    write:
+      url: jdbc:postgresql://localhost:5432/aodev-travels-db
+      username: dev
+      password: dev
+      hikari:
+        minimum-idle: 1
+        maximum-pool-size: 2
+        idle-timeout: 10000
+        max-lifetime: 60000
+        connection-timeout: 5000
+        pool-name: RabobankTravelsHikariPool
+      hibernate:
+        ddl-auto: validate
+        show-sql: true
+    read:
+      url: jdbc:postgresql://localhost:5436/aodev-travels-db
+      username: dev_replica
+      password: dev
+      hikari:
+        minimum-idle: 1
+        maximum-pool-size: 2
+        idle-timeout: 10000
+        max-lifetime: 60000
+        connection-timeout: 5000
+        pool-name: RabobankTravelsHikariPool
+      hibernate:
+        ddl-auto: validate
+        show-sql: true
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: validate
+#    show-sql: false
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/aodev-travels-db
+#    username: dev
+#    password: dev
+#    hikari:
+#      minimum-idle: 1
+#      maximum-pool-size: 2
+#      idle-timeout: 10000
+#      max-lifetime: 60000
+#      connection-timeout: 5000
+#      pool-name: RabobankTravelsHikariPool
+  flyway:
+    url: jdbc:postgresql://localhost:5432/aodev-travels-db
+    user: dev
+    password: dev
+    encoding: UTF-8
+    baseline-on-migrate: true
+    clean-disabled: true
+    locations:
+      - "db/migrations/postgresql"
+    enabled: true
+  servlet:
+    multipart:
+      enabled: false
+  jackson:
+    default-property-inclusion: NON_NULL
+

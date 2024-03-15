@@ -1,4 +1,4 @@
-# RABOBANK-TRAVELS
+# AODEV-TRAVELS
 
 This is a project for a test.
 
@@ -10,7 +10,7 @@ This project is about a travel agency and coverage this technologies:
 
 ## Desing
 
-![Draw system](./readme_files/rabobank-travels.png)
+![Draw system](./readme_files/aodev-travels.png)
 
 ## How can start?
 
