@@ -5,7 +5,7 @@ x-aodev-travels-common:
   deploy:
     resources:
       limits:
-        memory: 256M
+        memory: 128M
 
 services:
   aodev-travels-reservations-primary-db:
@@ -161,7 +161,6 @@ services:
     depends_on:
       - aodev-travels-rent-car-primary-db
   kafka:
-    <<: *aodev-travels-common
     image: docker.io/bitnami/kafka:3.6
     container_name: aodev-travels-kafka
     ports:
@@ -179,6 +178,11 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_HEAP_OPTS=-Xmx256m -Xms256m
+    deploy:
+      resources:
+        limits:
+          memory: 256M
 #  kafdrop:
 #    <<: *aodev-travels-common
 #    image: obsidiandynamics/kafdrop:4.0.1
