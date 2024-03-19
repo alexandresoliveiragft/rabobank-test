@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Project ###
+/devops/docker/volumes/**/data/
+/devops/docker/volumes/**/config/
+
+/.idea/
