@@ -8,6 +8,7 @@ import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destin
 import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.entities.DestinationEntity;
 import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.dataproviders.postgresql.repositories.destinations.ReadDestinationsRepository;
 import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.create.DestinationsControllerCreateRequest;
+import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.create.DestinationsControllerCreateResponse;
 import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.index.DestinationsControllerIndexRequest;
 import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.index.DestinationsControllerIndexResponse;
 import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.entrypoints.rest.destinations.update.DestinationsControllerUpdateRequest;
@@ -34,6 +35,11 @@ public class DestinationsService extends BaseService {
         destinationEntity.setCity(request.city());
         destinationEntity.setState(request.state());
         destinationsCreateUseCase.execute(destinationEntity);
+//        hasErrors(outputDTO, "Error occurs in create destination");
+//        return new DestinationsControllerCreateResponse(
+//                outputDTO.data().getId(),
+//                outputDTO.data().getCity(),
+//                outputDTO.data().getState());
     }
 
     public void update(

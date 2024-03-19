@@ -40,8 +40,8 @@ class DestinationsController extends BaseRestController {
     ) {
         service.create(request);
         URI uri = uriComponentsBuilder
-                .path("destinations/id")
-                .build().toUri();
+                .path("destinations/{id}")
+                .buildAndExpand(UUID.randomUUID()).toUri();
         return ResponseEntity.created(uri).build();
     }
 

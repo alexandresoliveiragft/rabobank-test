@@ -1,6 +1,6 @@
 #spring:
 #  application:
-#    name: aodev-travels-app
+#    name: aodev-travels-reservations-app
 #  profiles:
 #    active: dev
 #  config:
@@ -24,7 +24,7 @@ app:
         idle-timeout: 10000
         max-lifetime: 60000
         connection-timeout: 5000
-        pool-name: WriteRabobankTravelsHikariPool
+        pool-name: WriteAODevTravelsReservationsHikariPool
       hibernate:
         ddl-auto: validate
         show-sql: true
@@ -38,7 +38,7 @@ app:
         idle-timeout: 10000
         max-lifetime: 60000
         connection-timeout: 5000
-        pool-name: ReadRabobankTravelsHikariPool
+        pool-name: ReadAODevTravelsReservationsHikariPool
       hibernate:
         ddl-auto: validate
         show-sql: true
@@ -47,27 +47,12 @@ spring:
   profiles:
     active: dev
   main:
-    allow-bean-definition-overriding: true
+    allow-bean-definition-overriding: false
     allow-circular-references: false
   cloud:
     config:
       import-check:
         enabled: false
-  #  jpa:
-  #    hibernate:
-  #      ddl-auto: validate
-  #    show-sql: false
-  #  datasource:
-  #    url: jdbc:postgresql://localhost:5432/aodev-travels-db
-  #    username: dev
-  #    password: dev
-  #    hikari:
-  #      minimum-idle: 1
-  #      maximum-pool-size: 2
-  #      idle-timeout: 10000
-  #      max-lifetime: 60000
-  #      connection-timeout: 5000
-  #      pool-name: RabobankTravelsHikariPool
   flyway:
     url: jdbc:postgresql://localhost:5432/aodev-travels-reservations-db
     user: dev
@@ -84,3 +69,16 @@ spring:
   jackson:
     default-property-inclusion: NON_NULL
 
+logging:
+  level:
+    org:
+      apache:
+        kafka: error
+      springframework:
+        orm:
+          jpa:
+            JpaTransactionManager: trace
+        kafka:
+          transaction: trace
+          listener:
+            KafkaMessageListenerContainer: error

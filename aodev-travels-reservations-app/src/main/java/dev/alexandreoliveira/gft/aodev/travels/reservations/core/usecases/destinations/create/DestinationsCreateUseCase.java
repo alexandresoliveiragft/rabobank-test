@@ -1,5 +1,6 @@
 package dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destinations.create;
 
+import dev.alexandreoliveira.gft.aodev.travels.reservations.core.dtos.OutputDTO;
 import dev.alexandreoliveira.gft.aodev.travels.reservations.core.exceptions.CoreException;
 import dev.alexandreoliveira.gft.aodev.travels.reservations.core.models.DestinationModel;
 import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.IUseCase;
@@ -7,6 +8,7 @@ import dev.alexandreoliveira.gft.aodev.travels.reservations.core.usecases.destin
 import dev.alexandreoliveira.gft.aodev.travels.reservations.core.utils.validators.ModelValidatorUtil;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class DestinationsCreateUseCase implements IUseCase.In<DestinationModel> {
 

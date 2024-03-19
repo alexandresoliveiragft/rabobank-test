@@ -8,12 +8,14 @@ import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.event
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @KafkaListener(
         id = "travels-cqrs-destination-events",
         topics = {KafkaConfiguration.KAFKA_TOPIC_TRAVEL_CQRS_DESTINATION_EVENTS}
 )
+@Transactional(value = "writeKafkaTransactionManager", rollbackFor = {Throwable.class})
 public class DestinationsEventAggregate {
 
     private final WriteDestinationsRepository writeDestinationsRepository;

@@ -26,7 +26,6 @@ public class UsersService extends BaseService {
         this.usersShowUseCase = new UsersShowUseCase(readUsersRepository);
     }
 
-    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public UsersControllerCreateResponse create(UsersControllerCreateRequest request) {
         var userEntity = new UserEntity();
         userEntity.setName(request.name());

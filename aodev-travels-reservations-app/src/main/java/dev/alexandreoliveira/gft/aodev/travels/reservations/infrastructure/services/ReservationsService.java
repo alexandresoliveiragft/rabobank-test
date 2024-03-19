@@ -51,7 +51,6 @@ public class ReservationsService extends BaseService {
         this.reservationsShowUseCase = new ReservationsShowUseCase(readReservationsRepository);
     }
 
-    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public ReservationsCreateControllerResponse create(ReservationsCreateControllerRequest request) {
         List<BigDecimal> prices = new ArrayList<>();
 
@@ -119,7 +118,6 @@ public class ReservationsService extends BaseService {
         return new ReservationsCreateControllerResponse(output.data().getId(), output.data().getStatus());
     }
 
-    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public void updateHotelsLockReservation(ReservationsLocksHotelsSubscriptionMessage message) {
         var hotelEntity = new HotelEntity();
         hotelEntity.setExternalId(message.hotelId());
@@ -132,7 +130,6 @@ public class ReservationsService extends BaseService {
         reservationsLocksHotelsUseCase.execute(reservationEntity);
     }
 
-    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public void updateFlightsLockReservation(ReservationsLocksFlightsSubscriptionMessage message) {
         message.reservations().forEach(model -> {
             var seatEntity = new SeatEntity();
@@ -150,7 +147,6 @@ public class ReservationsService extends BaseService {
         });
     }
 
-    @Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
     public void updateTransfersLockReservation(ReservationsLocksTransfersSubscriptionMessage message) {
         message.reservedTransfers().forEach(model -> {
             var transfer = new TransferEntity();

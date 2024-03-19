@@ -8,25 +8,33 @@ import dev.alexandreoliveira.gft.aodev.travels.reservations.infrastructure.datap
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Repository
-@Transactional(value = "writeTransactionManager", rollbackFor = {Throwable.class})
 public class WriteDestinationsRepository implements DestinationsCreateRepository, DestinationsUpdateRepository {
 
     private final JpaRepository<DestinationEntity, UUID> jpaRepository;
+    private final TransactionTemplate transactionTemplate;
 
-    public WriteDestinationsRepository(@Qualifier("writeJpaDestinationsRepository") JpaRepository<DestinationEntity, UUID> jpaRepository) {
-
+    public WriteDestinationsRepository(
+            @Qualifier("writeJpaDestinationsRepository") JpaRepository<DestinationEntity, UUID> jpaRepository,
+            @Qualifier("writeTransactionManager") PlatformTransactionManager platformTransactionManager) {
         this.jpaRepository = jpaRepository;
+        this.transactionTemplate = new TransactionTemplate(platformTransactionManager);
+        transactionTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
     }
 
     @Override
-    public DestinationModel save(DestinationModel model) {
+    public DestinationModel save(final DestinationModel model) {
         return jpaRepository.save((DestinationEntity) model);
     }
 

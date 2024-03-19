@@ -4,7 +4,7 @@ server:
 app:
   databases:
     write:
-      url: jdbc:postgresql://localhost:5432/aodev-travels-db
+      url: jdbc:postgresql://localhost:5432/aodev-travels-reservations-db
       username: dev
       password: dev
       hikari:
@@ -13,13 +13,13 @@ app:
         idle-timeout: 10000
         max-lifetime: 60000
         connection-timeout: 5000
-        pool-name: RabobankTravelsHikariPool
+        pool-name: WriteAODevTravelsReservationsHikariPool
       hibernate:
         ddl-auto: validate
         show-sql: true
     read:
-      url: jdbc:postgresql://localhost:5436/aodev-travels-db
-      username: dev_replica
+      url: jdbc:postgresql://localhost:5436/aodev-travels-reservations-db
+      username: dev
       password: dev
       hikari:
         minimum-idle: 1
@@ -27,7 +27,7 @@ app:
         idle-timeout: 10000
         max-lifetime: 60000
         connection-timeout: 5000
-        pool-name: RabobankTravelsHikariPool
+        pool-name: ReadAODevTravelsReservationsHikariPool
       hibernate:
         ddl-auto: validate
         show-sql: true
@@ -36,25 +36,10 @@ spring:
   profiles:
     active: dev
   main:
-    allow-bean-definition-overriding: true
-    allow-circular-references: true
-#  jpa:
-#    hibernate:
-#      ddl-auto: validate
-#    show-sql: false
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/aodev-travels-db
-#    username: dev
-#    password: dev
-#    hikari:
-#      minimum-idle: 1
-#      maximum-pool-size: 2
-#      idle-timeout: 10000
-#      max-lifetime: 60000
-#      connection-timeout: 5000
-#      pool-name: RabobankTravelsHikariPool
+    allow-bean-definition-overriding: false
+    allow-circular-references: false
   flyway:
-    url: jdbc:postgresql://localhost:5432/aodev-travels-db
+    url: jdbc:postgresql://localhost:5432/aodev-travels-reservations-db
     user: dev
     password: dev
     encoding: UTF-8
@@ -68,4 +53,3 @@ spring:
       enabled: false
   jackson:
     default-property-inclusion: NON_NULL
-
